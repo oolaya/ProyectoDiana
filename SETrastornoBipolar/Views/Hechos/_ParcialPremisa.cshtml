@@ -1,0 +1,18 @@
+﻿@model IEnumerable<SETrastornoBipolar.Controllers.Objs.ModelList>
+
+<div>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPonderado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IdPregunta)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+
+</div>

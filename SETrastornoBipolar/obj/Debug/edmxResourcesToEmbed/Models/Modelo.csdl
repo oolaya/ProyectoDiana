@@ -1,0 +1,288 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="TrastornoBipolarDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TB_Hechos">
+    <Key>
+      <PropertyRef Name="IdHecho_pk" />
+    </Key>
+    <Property Name="IdHecho_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="FechaRegistra" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="IdPonderado_pk" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TB_Ponderados" Relationship="TrastornoBipolarDBModel.FK__TB_Hechos__IdPon__2D27B809" FromRole="TB_Hechos" ToRole="TB_Ponderados" />
+  </EntityType>
+  <EntityType Name="TB_Individuos">
+    <Key>
+      <PropertyRef Name="IdIndividuo_pk" />
+    </Key>
+    <Property Name="IdIndividuo_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Doc_Identidad" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Nombres" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Apellidos" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Telefono" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Direccion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="CiudadResidencia" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="CiudadNacimiento" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Femenino" Type="Boolean" Nullable="false" />
+    <Property Name="Observacion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="FechaRegistra" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="TB_OpcionesRespuestas">
+    <Key>
+      <PropertyRef Name="IdOpcionRespuesta_pk" />
+    </Key>
+    <Property Name="IdOpcionRespuesta_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Nombre" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="FechaRegistra" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TB_RespuestasxPreguntas" Relationship="Self.FK_TB_RespuestasxPreguntas_TB_OpcionesRespuestas" FromRole="TB_OpcionesRespuestas" ToRole="TB_RespuestasxPreguntas" />
+  </EntityType>
+  <EntityType Name="TB_Ponderados">
+    <Key>
+      <PropertyRef Name="IdPonderado_pk" />
+    </Key>
+    <Property Name="IdPonderado_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Valor" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TB_RespuestasxPreguntas" Relationship="Self.FK_TB_RespuestasxPreguntas_TB_Ponderados" FromRole="TB_Ponderados" ToRole="TB_RespuestasxPreguntas" />
+    <NavigationProperty Name="TB_Hechos" Relationship="TrastornoBipolarDBModel.FK__TB_Hechos__IdPon__2D27B809" FromRole="TB_Ponderados" ToRole="TB_Hechos" />
+    <NavigationProperty Name="TB_Preguntas" Relationship="TrastornoBipolarDBModel.FK__TB_Pregun__IdPon__30F848ED" FromRole="TB_Ponderados" ToRole="TB_Preguntas" />
+    <NavigationProperty Name="TB_Premisas" Relationship="TrastornoBipolarDBModel.FK__TB_Premis__IdPon__2F10007B" FromRole="TB_Ponderados" ToRole="TB_Premisas" />
+  </EntityType>
+  <EntityType Name="TB_Preguntas">
+    <Key>
+      <PropertyRef Name="IdPreguntas_pk" />
+    </Key>
+    <Property Name="IdPreguntas_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="280" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IdPremisa_fk" Type="Int32" Nullable="false" />
+    <Property Name="Orden" Type="Int32" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="FechaRegistra" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TB_Premisas" Relationship="Self.FK_TB_Preguntas_TB_Premisas" FromRole="TB_Preguntas" ToRole="TB_Premisas" />
+    <NavigationProperty Name="TB_RespuestasxPreguntas" Relationship="Self.FK_TB_RespuestasxPreguntas_TB_Preguntas" FromRole="TB_Preguntas" ToRole="TB_RespuestasxPreguntas" />
+    <Property Name="IdPonderado_pk" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TB_Ponderados" Relationship="TrastornoBipolarDBModel.FK__TB_Pregun__IdPon__30F848ED" FromRole="TB_Preguntas" ToRole="TB_Ponderados" />
+  </EntityType>
+  <EntityType Name="TB_Premisas">
+    <Key>
+      <PropertyRef Name="IdPremisa_pk" />
+    </Key>
+    <Property Name="IdPremisa_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="280" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="FechaRegistra" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TB_Preguntas" Relationship="Self.FK_TB_Preguntas_TB_Premisas" FromRole="TB_Premisas" ToRole="TB_Preguntas" />
+    <Property Name="IdPonderado_pk" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TB_Ponderados" Relationship="TrastornoBipolarDBModel.FK__TB_Premis__IdPon__2F10007B" FromRole="TB_Premisas" ToRole="TB_Ponderados" />
+  </EntityType>
+  <EntityType Name="TB_RespuestasxPreguntas">
+    <Key>
+      <PropertyRef Name="IdRespuestaxPregunta_pk" />
+    </Key>
+    <Property Name="IdRespuestaxPregunta_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPregunta_fk" Type="Int32" Nullable="false" />
+    <Property Name="IdOpcionRespuesta_fk" Type="Int32" Nullable="false" />
+    <Property Name="IdPonderado_fk" Type="Int32" Nullable="false" />
+    <Property Name="Descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FechaRegistra" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="TB_OpcionesRespuestas" Relationship="Self.FK_TB_RespuestasxPreguntas_TB_OpcionesRespuestas" FromRole="TB_RespuestasxPreguntas" ToRole="TB_OpcionesRespuestas" />
+    <NavigationProperty Name="TB_Ponderados" Relationship="Self.FK_TB_RespuestasxPreguntas_TB_Ponderados" FromRole="TB_RespuestasxPreguntas" ToRole="TB_Ponderados" />
+    <NavigationProperty Name="TB_Preguntas" Relationship="Self.FK_TB_RespuestasxPreguntas_TB_Preguntas" FromRole="TB_RespuestasxPreguntas" ToRole="TB_Preguntas" />
+    <Property Name="Premisa" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TB_Reglas_copia">
+    <Key>
+      <PropertyRef Name="IdRegla_pk" />
+      <PropertyRef Name="Descripcion" />
+      <PropertyRef Name="ParentId" />
+      <PropertyRef Name="Orden" />
+      <PropertyRef Name="Femenino" />
+      <PropertyRef Name="Test" />
+      <PropertyRef Name="Activo" />
+      <PropertyRef Name="FechaRegistra" />
+    </Key>
+    <Property Name="IdRegla_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Descripcion" Type="String" MaxLength="280" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="ParentId" Type="Int32" Nullable="false" />
+    <Property Name="Orden" Type="Int32" Nullable="false" />
+    <Property Name="Femenino" Type="Boolean" Nullable="false" />
+    <Property Name="Test" Type="Boolean" Nullable="false" />
+    <Property Name="Activo" Type="Boolean" Nullable="false" />
+    <Property Name="FechaRegistra" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <Association Name="FK_TB_RespuestasxPreguntas_TB_OpcionesRespuestas">
+    <End Role="TB_OpcionesRespuestas" Type="Self.TB_OpcionesRespuestas" Multiplicity="1" />
+    <End Role="TB_RespuestasxPreguntas" Type="Self.TB_RespuestasxPreguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_OpcionesRespuestas">
+        <PropertyRef Name="IdOpcionRespuesta_pk" />
+      </Principal>
+      <Dependent Role="TB_RespuestasxPreguntas">
+        <PropertyRef Name="IdOpcionRespuesta_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_RespuestasxPreguntas_TB_Ponderados">
+    <End Role="TB_Ponderados" Type="Self.TB_Ponderados" Multiplicity="1" />
+    <End Role="TB_RespuestasxPreguntas" Type="Self.TB_RespuestasxPreguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Ponderados">
+        <PropertyRef Name="IdPonderado_pk" />
+      </Principal>
+      <Dependent Role="TB_RespuestasxPreguntas">
+        <PropertyRef Name="IdPonderado_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_Preguntas_TB_Premisas">
+    <End Role="TB_Premisas" Type="Self.TB_Premisas" Multiplicity="1" />
+    <End Role="TB_Preguntas" Type="Self.TB_Preguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Premisas">
+        <PropertyRef Name="IdPremisa_pk" />
+      </Principal>
+      <Dependent Role="TB_Preguntas">
+        <PropertyRef Name="IdPremisa_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TB_RespuestasxPreguntas_TB_Preguntas">
+    <End Role="TB_Preguntas" Type="Self.TB_Preguntas" Multiplicity="1" />
+    <End Role="TB_RespuestasxPreguntas" Type="Self.TB_RespuestasxPreguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Preguntas">
+        <PropertyRef Name="IdPreguntas_pk" />
+      </Principal>
+      <Dependent Role="TB_RespuestasxPreguntas">
+        <PropertyRef Name="IdPregunta_fk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="TrastornoBipolarDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TB_Hechos" EntityType="Self.TB_Hechos" />
+    <EntitySet Name="TB_Individuos" EntityType="Self.TB_Individuos" />
+    <EntitySet Name="TB_OpcionesRespuestas" EntityType="Self.TB_OpcionesRespuestas" />
+    <EntitySet Name="TB_Ponderados" EntityType="Self.TB_Ponderados" />
+    <EntitySet Name="TB_Preguntas" EntityType="Self.TB_Preguntas" />
+    <EntitySet Name="TB_Premisas" EntityType="Self.TB_Premisas" />
+    <EntitySet Name="TB_RespuestasxPreguntas" EntityType="Self.TB_RespuestasxPreguntas" />
+    <EntitySet Name="TB_Reglas_copia" EntityType="Self.TB_Reglas_copia" />
+    <AssociationSet Name="FK_TB_RespuestasxPreguntas_TB_OpcionesRespuestas" Association="Self.FK_TB_RespuestasxPreguntas_TB_OpcionesRespuestas">
+      <End Role="TB_OpcionesRespuestas" EntitySet="TB_OpcionesRespuestas" />
+      <End Role="TB_RespuestasxPreguntas" EntitySet="TB_RespuestasxPreguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_RespuestasxPreguntas_TB_Ponderados" Association="Self.FK_TB_RespuestasxPreguntas_TB_Ponderados">
+      <End Role="TB_Ponderados" EntitySet="TB_Ponderados" />
+      <End Role="TB_RespuestasxPreguntas" EntitySet="TB_RespuestasxPreguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_Preguntas_TB_Premisas" Association="Self.FK_TB_Preguntas_TB_Premisas">
+      <End Role="TB_Premisas" EntitySet="TB_Premisas" />
+      <End Role="TB_Preguntas" EntitySet="TB_Preguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TB_RespuestasxPreguntas_TB_Preguntas" Association="Self.FK_TB_RespuestasxPreguntas_TB_Preguntas">
+      <End Role="TB_Preguntas" EntitySet="TB_Preguntas" />
+      <End Role="TB_RespuestasxPreguntas" EntitySet="TB_RespuestasxPreguntas" />
+    </AssociationSet>
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(TrastornoBipolarDBModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(TrastornoBipolarDBModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <AssociationSet Name="FK__TB_Hechos__IdPon__2D27B809" Association="TrastornoBipolarDBModel.FK__TB_Hechos__IdPon__2D27B809">
+      <End Role="TB_Ponderados" EntitySet="TB_Ponderados" />
+      <End Role="TB_Hechos" EntitySet="TB_Hechos" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TB_Pregun__IdPon__30F848ED" Association="TrastornoBipolarDBModel.FK__TB_Pregun__IdPon__30F848ED">
+      <End Role="TB_Ponderados" EntitySet="TB_Ponderados" />
+      <End Role="TB_Preguntas" EntitySet="TB_Preguntas" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TB_Premis__IdPon__2F10007B" Association="TrastornoBipolarDBModel.FK__TB_Premis__IdPon__2F10007B">
+      <End Role="TB_Ponderados" EntitySet="TB_Ponderados" />
+      <End Role="TB_Premisas" EntitySet="TB_Premisas" />
+    </AssociationSet>
+  </EntityContainer>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <Association Name="FK__TB_Hechos__IdPon__2D27B809">
+    <End Type="TrastornoBipolarDBModel.TB_Ponderados" Role="TB_Ponderados" Multiplicity="1" />
+    <End Type="TrastornoBipolarDBModel.TB_Hechos" Role="TB_Hechos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Ponderados">
+        <PropertyRef Name="IdPonderado_pk" />
+      </Principal>
+      <Dependent Role="TB_Hechos">
+        <PropertyRef Name="IdPonderado_pk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TB_Pregun__IdPon__30F848ED">
+    <End Type="TrastornoBipolarDBModel.TB_Ponderados" Role="TB_Ponderados" Multiplicity="1" />
+    <End Type="TrastornoBipolarDBModel.TB_Preguntas" Role="TB_Preguntas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Ponderados">
+        <PropertyRef Name="IdPonderado_pk" />
+      </Principal>
+      <Dependent Role="TB_Preguntas">
+        <PropertyRef Name="IdPonderado_pk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TB_Premis__IdPon__2F10007B">
+    <End Type="TrastornoBipolarDBModel.TB_Ponderados" Role="TB_Ponderados" Multiplicity="1" />
+    <End Type="TrastornoBipolarDBModel.TB_Premisas" Role="TB_Premisas" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TB_Ponderados">
+        <PropertyRef Name="IdPonderado_pk" />
+      </Principal>
+      <Dependent Role="TB_Premisas">
+        <PropertyRef Name="IdPonderado_pk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

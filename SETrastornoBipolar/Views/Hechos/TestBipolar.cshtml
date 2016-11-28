@@ -1,0 +1,32 @@
+﻿@{
+    ViewBag.Title = "TestBipolar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Test Bipolar</h2>
+
+<form class="form-horizontal">
+    <div class="form-group">
+        <label for="inputName" class="control-label col-xs-2">Nombre:</label>
+        <div class="col-xs-10">
+            <input type="text" class="form-control" placeholder="Nombre">
+            <span class="help-block">Un bloque de texto de ayuda.</span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputEmail" class="control-label col-xs-2">Email:</label>
+        <div class="col-xs-10">
+            <input type="email" class="form-control" placeholder="Email">
+            <span class="help-block">Un bloque de texto de ayuda.</span>
+        </div>
+    </div>
+    <div class="form-group">
+
+        @Html.Partial("_ParcialPremisa")
+
+
+        <div class="col-xs-offset-2 col-xs-10">
+            <button type="submit" class="btn btn-primary">Enviar</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="TrastornoBipolarDBModelStoreContainer" CdmEntityContainer="TrastornoBipolarDBEntities">
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Hechos">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_Hechos">
+        <MappingFragment StoreEntitySet="TB_Hechos">
+          <ScalarProperty Name="IdPonderado_pk" ColumnName="IdPonderado_pk" />
+          <ScalarProperty Name="IdHecho_pk" ColumnName="IdHecho_pk" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaRegistra" ColumnName="FechaRegistra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Individuos">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_Individuos">
+        <MappingFragment StoreEntitySet="TB_Individuos">
+          <ScalarProperty Name="IdIndividuo_pk" ColumnName="IdIndividuo_pk" />
+          <ScalarProperty Name="Doc_Identidad" ColumnName="Doc_Identidad" />
+          <ScalarProperty Name="Nombres" ColumnName="Nombres" />
+          <ScalarProperty Name="Apellidos" ColumnName="Apellidos" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="CiudadResidencia" ColumnName="CiudadResidencia" />
+          <ScalarProperty Name="FechaNacimiento" ColumnName="FechaNacimiento" />
+          <ScalarProperty Name="CiudadNacimiento" ColumnName="CiudadNacimiento" />
+          <ScalarProperty Name="Femenino" ColumnName="Femenino" />
+          <ScalarProperty Name="Observacion" ColumnName="Observacion" />
+          <ScalarProperty Name="FechaRegistra" ColumnName="FechaRegistra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_OpcionesRespuestas">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_OpcionesRespuestas">
+        <MappingFragment StoreEntitySet="TB_OpcionesRespuestas">
+          <ScalarProperty Name="IdOpcionRespuesta_pk" ColumnName="IdOpcionRespuesta_pk" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaRegistra" ColumnName="FechaRegistra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Ponderados">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_Ponderados">
+        <MappingFragment StoreEntitySet="TB_Ponderados">
+          <ScalarProperty Name="IdPonderado_pk" ColumnName="IdPonderado_pk" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Preguntas">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_Preguntas">
+        <MappingFragment StoreEntitySet="TB_Preguntas">
+          <ScalarProperty Name="IdPonderado_pk" ColumnName="IdPonderado_pk" />
+          <ScalarProperty Name="IdPreguntas_pk" ColumnName="IdPreguntas_pk" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="IdPremisa_fk" ColumnName="IdPremisa_fk" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaRegistra" ColumnName="FechaRegistra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Premisas">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_Premisas">
+        <MappingFragment StoreEntitySet="TB_Premisas">
+          <ScalarProperty Name="IdPonderado_pk" ColumnName="IdPonderado_pk" />
+          <ScalarProperty Name="IdPremisa_pk" ColumnName="IdPremisa_pk" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaRegistra" ColumnName="FechaRegistra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_RespuestasxPreguntas">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_RespuestasxPreguntas">
+        <MappingFragment StoreEntitySet="TB_RespuestasxPreguntas">
+          <ScalarProperty Name="Premisa" ColumnName="Premisa" />
+          <ScalarProperty Name="IdRespuestaxPregunta_pk" ColumnName="IdRespuestaxPregunta_pk" />
+          <ScalarProperty Name="IdPregunta_fk" ColumnName="IdPregunta_fk" />
+          <ScalarProperty Name="IdOpcionRespuesta_fk" ColumnName="IdOpcionRespuesta_fk" />
+          <ScalarProperty Name="IdPonderado_fk" ColumnName="IdPonderado_fk" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="FechaRegistra" ColumnName="FechaRegistra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TB_Reglas_copia">
+      <EntityTypeMapping TypeName="TrastornoBipolarDBModel.TB_Reglas_copia">
+        <MappingFragment StoreEntitySet="TB_Reglas_copia">
+          <ScalarProperty Name="IdRegla_pk" ColumnName="IdRegla_pk" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="ParentId" ColumnName="ParentId" />
+          <ScalarProperty Name="Orden" ColumnName="Orden" />
+          <ScalarProperty Name="Femenino" ColumnName="Femenino" />
+          <ScalarProperty Name="Test" ColumnName="Test" />
+          <ScalarProperty Name="Activo" ColumnName="Activo" />
+          <ScalarProperty Name="FechaRegistra" ColumnName="FechaRegistra" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="TrastornoBipolarDBModel.Store.sp_alterdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="TrastornoBipolarDBModel.Store.sp_creatediagram" />
+    <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="TrastornoBipolarDBModel.Store.sp_dropdiagram" />
+    <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="TrastornoBipolarDBModel.Store.sp_helpdiagramdefinition">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TrastornoBipolarDBModel.sp_helpdiagramdefinition_Result">
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="TrastornoBipolarDBModel.Store.sp_helpdiagrams">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="TrastornoBipolarDBModel.sp_helpdiagrams_Result">
+          <ScalarProperty Name="Database" ColumnName="Database" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Owner" ColumnName="Owner" />
+          <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="TrastornoBipolarDBModel.Store.sp_renamediagram" />
+    <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="TrastornoBipolarDBModel.Store.sp_upgraddiagrams" />
+  </EntityContainerMapping>
+</Mapping>
